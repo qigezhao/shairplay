@@ -21,12 +21,32 @@ sudo apt-get install autoconf automake libtool
 sudo apt-get install libltdl-dev libao-dev libavahi-compat-libdnssd-dev
 sudo apt-get install avahi-daemon
 ```
-
+Install these libraries are required.
 ```
 ./autogen.sh
 ./configure
 make
 sudo make install
+```
+
+Run as a service
+----------------
+Keep going
+```
+sudo mkdir -p /usr/local/share/shairplay/
+sudo cp airport.key /usr/local/share/shairplay/
+
+sudo cp shairplay.init /etc/init.d/shairplay
+sudo chmod +x /etc/init.d/shairplay
+sudo update-rc.d shairplay defaults
+
+sudo reboot
+```
+
+Slove "LSB" warnings
+--------------------
+```
+sudo apt-get remove insserv
 ```
 
 Notice that libao is required in order to install the shairplay binary,
